@@ -338,7 +338,7 @@ static void item_selected(GtkMenuItem *menu_item, gpointer user_data) {
   save_history();
   /* Paste the clipboard contents automatically if enabled */
   if (prefs.automatic_paste) {
-    gchar* cmd = g_strconcat("/bin/sh -c 'xdotool key ctrl+v'", NULL);
+    gchar* cmd = g_strconcat("/bin/bash -c 'wnd_focus=$(xdotool getwindowfocus); wnd_pid=$(xdotool getwindowpid (ps -p $wnd_pid | grep gnome-terminal); if [ -z ""$wnd_gnome_terminal"" ]; then xdotool key ctrl+v; else xdotool key ctrl+shift+v; fi'", NULL);
     GPid pid;
     gchar **argv;
     g_shell_parse_argv(cmd, NULL, &argv, NULL);
